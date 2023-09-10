@@ -1,5 +1,5 @@
 fn main() {
-    println!("Hello, world!");
+    println!("Run Cargo Test");
 }
 
 // Definition for singly-linked list.
