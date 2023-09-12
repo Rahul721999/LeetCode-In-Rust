@@ -4,7 +4,7 @@ fn main() {
     println!("run cargo test");
 }
 
-
+#[allow(dead_code)]
 fn length_of_longest_substring(s: String) -> i32{
     let mut start = 0;
     let mut end = 0;
@@ -47,7 +47,7 @@ impl MyTrait for String{
 
 #[cfg(test)]
 mod test{
-    use crate::length_of_longest_substring;
+    use crate::{length_of_longest_substring, MyTrait};
 
     #[test]
     fn test1(){
@@ -60,5 +60,16 @@ mod test{
     #[test]
     fn test3(){
         assert_eq!(length_of_longest_substring(String::from("pwwkew")), 3);
+    }
+
+    #[test]
+    fn test4(){
+
+        let s1 = String::from("Hello �World");
+        assert_eq!('H', s1.char_at(0).unwrap());
+        assert_eq!('�', s1.char_at(6).unwrap());
+
+        let s2 = String::from("💖💖💖💖");
+        assert_eq!('💖', s2.char_at(1).unwrap());
     }
 }
