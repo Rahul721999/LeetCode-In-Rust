@@ -8,16 +8,16 @@ fn main() {
 struct Solution;
 impl Solution {
     pub fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
-    
+        use std::i32::MAX;
         let mut new_arr: Vec<i32> = vec![];
-
 
         // marge two array into one.
         let total_length = nums1.len() + nums2.len();
+        let med = total_length / 2;
         let (mut p1,mut p2) = (0,0);
-        for _ in 0..total_length{
-            let num1 = nums1.get(p1).unwrap_or(&std::i32::MAX);
-            let num2 = nums2.get(p2).unwrap_or(&std::i32::MAX);
+        while p1+p2 <= med{
+            let num1 = nums1.get(p1).unwrap_or(&MAX);
+            let num2 = nums2.get(p2).unwrap_or(&MAX);
 
             if num1 < num2{
                 new_arr.push(*num1);
@@ -29,7 +29,7 @@ impl Solution {
         }
 
         // check if total_len is odd or even
-        let med = total_length / 2;
+        
         if total_length % 2 == 0{
             return (new_arr[med] + new_arr[med-1]) as f64/2.0;
         }else{
