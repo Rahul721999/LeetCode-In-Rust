@@ -1,18 +1,9 @@
+#![allow(unused)]
 use std::collections::HashSet;
-use std::{panic, vec};
+mod solution;
 
 fn main() {
-    assert_eq!(Solution::three_sum(vec![0, 0, 0]), vec![vec![0, 0, 0]]);
-    assert_eq!(Solution::three_sum(vec![0, 1, 1]), Vec::<Vec<i32>>::new());
-
-    let result = Solution::three_sum(vec![-1, 0, 1, 2, -1, -4]);
-    if result == [[-1, -1, 2], [-1, 0, 1]] {
-        ..
-    } else if result == [[-1, 0, 1], [-1, -1, 2]] {
-        ..
-    } else {
-        panic!("Result: {:?}", result)
-    };
+    println!("run -> cargo test");
 }
 
 struct Solution;
@@ -45,5 +36,34 @@ impl Solution {
             .iter()
             .map(|list| vec![list.0, list.1, list.2])
             .collect()
+    }
+}
+
+
+#[cfg(test)]
+mod test {
+    use crate::Solution;
+
+    #[test]
+    fn test1() {
+        let result = Solution::three_sum(vec![-1, 0, 1, 2, -1, -4]);
+        let expected = vec![vec![-1, -1, 2], vec![-1, 0, 1]];
+        assert_eq!(result.len(), expected.len());
+        assert!(result.iter().all(|val| expected.contains(val)));
+    }
+    #[test]
+    fn test2() {
+        let result = Solution::three_sum(vec![0, 0, 0]);
+        dbg!(result.clone());
+        let expected = vec![vec![0, 0, 0]];
+        assert_eq!(result.len(), expected.len());
+        assert!(result.iter().all(|val| expected.contains(val)));
+    }
+    #[test]
+    fn test3() {
+        let result = Solution::three_sum(vec![0, 1, 1]);
+        let expected = vec![];
+        assert_eq!(result.len(), expected.len());
+        assert!(result.iter().all(|val| expected.contains(val)));
     }
 }

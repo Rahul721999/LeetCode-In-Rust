@@ -1,3 +1,4 @@
+#![allow(unused)]
 fn main() {
     let head = Some(Box::new(ListNode{val : 1, next:Some(Box::new(ListNode{val : 2, next:Some(Box::new(ListNode{val : 3, next:None}))}))}));
     let k = 5;
