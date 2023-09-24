@@ -1,0 +1,6 @@
+{
+     "rust-analyzer.linkedProjects": [
+          ".\\leetcode_48\\Cargo.toml",
+          ".\\leetcode_48\\Cargo.toml"
+     ]
+}
