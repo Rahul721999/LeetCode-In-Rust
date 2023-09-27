@@ -1,16 +1,24 @@
 
-// if s[i] == p[j]{ 
-//   dp[i][j] = dp[i-1][j-1];} // look for the diagonal
-// if p[j] == '*'{
-//   if dp[i][j-2]{ // looking for zero occurrence
-//        dp[i][j] = dp[i][j-1] 
-//   }
-//   // looking for at least one occurrences
-//   else if s[i] == p[j-1] || p[j-1] == '.'{
-//        dp[i][j] == dp[i-1][j]
-//   }
-// }else{
-//     dp[i][j] == false;
+/// first row initialization ------
+// if i == 0 && j=='*'{
+//       dp[i][j] = dp[i][j-2]; 
+// }
+
+/// skip for the first row---
+// if i == 0 {continue}
+
+/// matching same char------
+// if s[i] == p[j] || p[j] == '.'{
+//       dp[i][j] = dp[i-1][j-1];
+// }
+// or p.charAt(j) == '*'----------
+// else if p[j] == '*'{ 
+//       // looking for zero occurrence----
+//        if dp[i][j-2] == true{dp[i][j] == dp[i][j-2]}
+//       // looking for multiple occurrences-----
+//        else if s[i] == p[j-1] || p[j-1] == '.'{
+//                   dp[i][j] = dp[i-1][j]
+//        }
 // }
 
 
