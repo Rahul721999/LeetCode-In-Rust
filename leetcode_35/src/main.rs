@@ -34,3 +34,24 @@ impl Solution{
         return mid as i32;
     }
 }
+
+#[cfg(test)]
+mod test{
+    use crate::Solution;
+    #[test]
+    fn test1(){
+        assert_eq!(Solution::search_insert_position(vec![1,3,5], 4), 2);
+    }
+    #[test]
+    fn test2(){
+        assert_eq!(Solution::search_insert_position(vec![1,3,5,6],5), 2);
+    }
+    #[test]
+    fn test3(){
+        assert_eq!(Solution::search_insert_position(vec![1,3,5,6],2), 1);
+    }
+    #[test]
+    fn test4(){
+        assert_eq!(Solution::search_insert_position(vec![1,3,5,6],7), 4);
+    }
+}
