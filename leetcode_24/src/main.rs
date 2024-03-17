@@ -29,7 +29,8 @@ mod test;
 fn main() {
     let test_case = helper(vec![1, 2, 3, 4]);
     let expected_result = helper(vec![2, 1, 4, 3]);
-    assert_eq!(Solution::swap_pairs(test_case), expected_result);
+    assert_eq!(Solution::swap_pairs(test_case.clone()), expected_result);
+    assert_eq!(Solution::recursive_swap(test_case), expected_result);
 }
 
 pub struct Solution;
@@ -46,7 +47,6 @@ impl Solution {
         //
         while let Some(mut first) = prev.next.take() {
             if let Some(mut second) = first.next.take() {
-
                 // temp var to hold the value for the node after second one
                 let third = second.next.take();
 
@@ -70,3 +70,23 @@ impl Solution {
 
 // node.next == node.next.next
 // node.next.next == node
+impl Solution {
+    pub fn recursive_swap(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+        fn swap(head: Option<Box<ListNode>>) -> Option<Box<ListNode>> {
+            match head {
+                Some(mut first) => {
+                    if let Some(mut second) = first.next.take() {
+                        let third = second.next.take();
+                        first.next = swap(third);
+                        second.next = Some(first);
+                        Some(second)
+                    } else {
+                        Some(first)
+                    }
+                }
+                None => None,
+            }
+        }
+        swap(head)
+    }
+}
