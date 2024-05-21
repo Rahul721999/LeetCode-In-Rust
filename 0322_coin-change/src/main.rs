@@ -1,10 +1,14 @@
 fn main() {
-    assert_eq!(Solution::coin_change(vec![1,2,5], 11), 3);
+    assert_eq!(Solution::coin_change(vec![1, 2, 5], 11), 3);
     assert_eq!(Solution::coin_change(vec![2], 3), -1);
     assert_eq!(Solution::coin_change(vec![1], 0), 0);
-    assert_eq!(Solution::coin_change(vec![1,2, 5], 5), 1);
+    assert_eq!(Solution::coin_change(vec![1, 2, 5], 5), 1);
+    
+    assert_eq!(Solution::coin_change_optimized(vec![1, 2, 5], 11), 3);
+    assert_eq!(Solution::coin_change_optimized(vec![2], 3), -1);
+    assert_eq!(Solution::coin_change_optimized(vec![1], 0), 0);
+    assert_eq!(Solution::coin_change_optimized(vec![1, 2, 5], 5), 1);
 }
-
 pub struct Solution;
 impl Solution {
     // min no of coin needed to change the amount.
@@ -32,6 +36,29 @@ impl Solution {
             -1
         } else {
             dp[len][amount]
+        }
+    }
+
+    pub fn coin_change_optimized(coins: Vec<i32>, amount: i32) -> i32 {
+        if amount == 0 {
+            return 0;
+        }
+        let amount = amount as usize;
+        let mut dp = vec![std::i32::MAX; amount + 1];
+        dp[0] = 0;
+
+        for i in 1..=amount {
+            for &coin in &coins {
+                let coin = coin as usize;
+                if coin <= i && dp[i - coin] != std::i32::MAX {
+                    dp[i] = dp[i].min(dp[i - coin] + 1)
+                }
+            }
+        }
+        if dp[amount] == std::i32::MAX {
+            -1
+        } else {
+            dp[amount]
         }
     }
 }
