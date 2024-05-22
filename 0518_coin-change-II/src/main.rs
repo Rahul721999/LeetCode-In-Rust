@@ -11,6 +11,9 @@ fn main() {
     assert_eq!(Solution::change(5, vec![1, 2, 5]), 4);
     assert_eq!(Solution::change(3, vec![2]), 0);
     assert_eq!(Solution::change(3, vec![3]), 1);
+    assert_eq!(Solution::coin_exchange_optimized(5, vec![1, 2, 5]), 4);
+    assert_eq!(Solution::coin_exchange_optimized(3, vec![2]), 0);
+    assert_eq!(Solution::coin_exchange_optimized(3, vec![3]), 1);
 }
 
 pub struct Solution;
@@ -32,7 +35,7 @@ impl Solution {
 
         for i in 1..=n {
             for j in 0..=amount as usize {
-                if coins[i - 1] <= j as i32 {
+                if coins[i - 1] <= j as i32 && dp[i][j] == 0 {
                     dp[i][j] = dp[i - 1][j] + dp[i][j - coins[i - 1] as usize];
                 } else {
                     dp[i][j] = dp[i - 1][j];
@@ -40,5 +43,25 @@ impl Solution {
             }
         }
         dp[n][amount as usize]
+    }
+    pub fn coin_exchange_optimized(amount: i32, coins: Vec<i32>) -> i32 {
+        if amount == 0 {
+            return 1;
+        }
+        if coins.is_empty() {
+            return 0;
+        }
+        let mut dp = vec![0; amount as usize + 1];
+        dp[0] = 1;
+
+        for &coin in &coins {
+            for j in coin as usize..=amount as usize {
+                if coin <= j as i32 {
+                    dp[j] += dp[j - coin as usize]
+                }
+            }
+        }
+
+        dp[amount as usize]
     }
 }
