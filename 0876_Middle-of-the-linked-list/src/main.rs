@@ -1,3 +1,4 @@
+mod tests;
 mod listnode;
 use listnode::*;
 fn main() {
