@@ -1,4 +1,5 @@
 #![allow(unused)]
+mod tests;
 mod listnode;
 use listnode::{helper, ListNode};
 
