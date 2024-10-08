@@ -1,0 +1,7 @@
+[package]
+name = "leetcode_0112"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+helper = { version = "0.1.0", path = "../helper" }
