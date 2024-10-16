@@ -15,7 +15,7 @@ impl Solution {
 
         for (r, ele) in nums.iter().enumerate(){
             if r - l > k as usize{
-                window.remove(ele);
+                window.remove(&nums[l]);
                 l += 1;
             }
             if window.contains(ele){
