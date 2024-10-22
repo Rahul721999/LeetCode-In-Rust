@@ -24,20 +24,19 @@ Before using the script, ensure the following:
 1. Copy the file and paste it into this following directory ```..\Git\usr\bin```.
 2. **Open Terminal with Admin Privilage**
 3. Navigate to the folder where your script is saved:
-    ```bash 
-        cd path/to/repo
-    ```
+```bash 
+cd path/to/repo
+```
 4. **Use the following command** to copy the script to Git's bin directory:
-    ``` bash
-        # for Windows
-        Copy-Item ./leetcode.sh "C:/Program Files/Git/usr/bin/" -Force
-
-        # //TODO: for linux 
-    ```
+``` bash
+# for Windows
+Copy-Item ./leetcode.sh "C:/Program Files/Git/usr/bin/" -Force
+# //TODO: for linux 
+```
 5. The script is now globally accessible from any terminal.
-    ```bash
-    leetcode.sh <problem_no> <problem_title>
-    ```
+```bash
+leetcode.sh <problem_no> <problem_title>
+```
 
 
 
