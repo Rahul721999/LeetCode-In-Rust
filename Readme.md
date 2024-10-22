@@ -19,7 +19,7 @@ Before using the script, ensure the following:
 
 ## Script Usage
 
-1. Save the script as `leetcode.sh` in your desired directory.
+1. Save the script as `leetcode.sh` in your desired directory. Or copy the file and paste it into this following directory ```..\Git\usr\bin```.
 2. Open **WSL** or **Git Bash**.
 3. Make the script executable:
 ```bash
@@ -35,6 +35,12 @@ cd path/to/repo
 ```bash
 ./leetcode.sh <problem_no> <problem_title>
 ```
+
+### If you pasted the file inside ```..\Git\usr\bin```
+```bash
+leetcode.sh <problem_no> <problem_title>
+```
+
  ***Arguments***
 - `<problem_no>`: The number the problem from leetcode.
 - `<problem_title>`: The title of the problem mentioned in leetcode. 
