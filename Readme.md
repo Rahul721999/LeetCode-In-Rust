@@ -1,3 +1,4 @@
+
 # About this repo
 Welcome to my ***LeetCode Practice*** repository! This repo is designed to help me keep track of my progress on LeetCode problems over time. Currently, it contains Rust solutions for various LeetCode problems.
 
@@ -17,9 +18,32 @@ Before using the script, ensure the following:
 - Rust and Cargo are installed in your environment.
 - The script file has Unix line endings (LF). If you encounter issues, refer to the [Fixing Line Endings](#fixing-line-endings) section.
 
-## Script Usage
+## **Script Usage**
 
-1. Save the script as `leetcode.sh` in your desired directory. Or copy the file and paste it into this following directory ```..\Git\usr\bin```.
+### Option 1: Copy the script to Git's bin directory
+1. Copy the file and paste it into this following directory ```..\Git\usr\bin```.
+2. **Open Terminal with Admin Privilage**
+3. Navigate to the folder where your script is saved:
+    ```bash 
+        cd path/to/repo
+    ```
+4. **Use the following command** to copy the script to Git's bin directory:
+    ``` bash
+        # for Windows
+        Copy-Item ./leetcode.sh "C:/Program Files/Git/usr/bin/" -Force
+
+        # //TODO: for linux 
+    ```
+5. The script is now globally accessible from any terminal.
+    ```bash
+    leetcode.sh <problem_no> <problem_title>
+    ```
+
+
+
+### Option 2: Save the script in your desired directory
+1. Or Save the script as `leetcode.sh` in your desired directory. 
+
 2. Open **WSL** or **Git Bash**.
 3. Make the script executable:
 ```bash
@@ -34,11 +58,6 @@ cd path/to/repo
 
 ```bash
 ./leetcode.sh <problem_no> <problem_title>
-```
-
-### If you pasted the file inside ```..\Git\usr\bin```
-```bash
-leetcode.sh <problem_no> <problem_title>
 ```
 
  ***Arguments***

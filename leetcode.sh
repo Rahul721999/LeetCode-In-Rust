@@ -64,3 +64,13 @@ CURRENT_DIR=$(pwd)
 
 # Notify the user with the current directory, using colors
 echo -e "${GREEN}Created ${YELLOW}$FILE_NAME${GREEN} in the ${YELLOW}$CURRENT_DIR${GREEN} directory.${NC}"
+
+
+# Add "mod tests;" in main.rs line 1
+MAIN_RS_FILE="main.rs"
+
+# Use sed to insert "mod tests;" at the first line
+sed -i '1imod tests;' "$MAIN_RS_FILE"
+
+# Notify the user that the line has been added
+echo -e "${GREEN}Added ${YELLOW}mod tests;${GREEN} to ${YELLOW}$MAIN_RS_FILE${GREEN} at line 1.${NC}"
