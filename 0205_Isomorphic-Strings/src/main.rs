@@ -18,12 +18,20 @@ impl Solution {
         if s.len() != t.len() {
             return false;
         }
+        /*
+            Converting String to Vec increased performance from 512ms to 1ms
+            slower --> string.chars().nth(i)
+            faster --> vec[i]
+        */
+        let s: Vec<char> = s.chars().collect();
+        let t: Vec<char> = t.chars().collect();
+
         let mut map1: HashMap<char, char> = HashMap::new();
         let mut map2: HashMap<char, char> = HashMap::new();
 
         for i in 0..s.len() {
-            let ch1 = s.chars().nth(i).unwrap();
-            let ch2 = t.chars().nth(i).unwrap();
+            let ch1 = s[i];
+            let ch2 = t[i];
 
             if let Some(c) = map1.insert(ch1, ch2) {
                 if c != ch2 {
