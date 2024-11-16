@@ -6,18 +6,25 @@ fn main() {
     assert_eq!(data, vec![8,12,19,23,45,51]);
 }
 
-pub fn insertion_sort(arr: &mut [i32]) {
-    if arr.is_empty() {
+// Insertion Sort (an in-place sorting algorithm)
+pub fn insertion_sort(nums: &mut Vec<i32>) {
+    if nums.is_empty() {
         return;
-    };
-    let len = arr.len();
-    for i in 0..len {
-        let current = arr[i];
-        let mut j = i;
-        while j > 0 && arr[j - 1] > current {
-            arr[j] = arr[j - 1];
-            j -= 1;
+    } // Handle edge case: empty input
+
+    // Start iterating from index 1, as the first element (index 0) is considered already sorted
+    for i in 1..nums.len() {
+        let curr = nums[i]; // Current element to be placed in the correct position
+        let mut j = i; // Start from the current index and move backward
+
+        // Shift elements to the right until the correct position for 'curr' is found
+        while j > 0 && curr < nums[j - 1] {
+            // While 'curr' is smaller than the previous element
+            nums[j] = nums[j - 1]; // Shift the previous element one position to the right
+            j -= 1; // Move to the previous position
         }
-        arr[j] = current;
+
+        // Insert 'curr' at its correct position
+        nums[j] = curr;
     }
 }
