@@ -9,30 +9,25 @@ fn main() {
 pub struct Solution;
 impl Solution {
     pub fn longest_common_subsequence(text1: String, text2: String) -> i32 {
-        let (m, n) = (text1.len(), text2.len());
-        let s1: Vec<char> = text1.chars().collect();
-        let s2: Vec<char> = text2.chars().collect();
+        let a = text1.as_bytes();
+        let b = text2.as_bytes();
 
-        let mut dp = vec![vec![0; n + 1]; m + 1];
+        let mut dp = vec![0; b.len() + 1];
 
-        fn lcs(s1: &Vec<char>, s2: &Vec<char>, m: usize, n: usize, dp: &mut Vec<Vec<i32>>) -> i32 {
-            if m == 0 || n == 0 {
-                return 0;
+        for i in 0..a.len() {
+            let mut prev;
+            let mut curr = 0;
+            for j in 0..b.len() {
+                prev = curr;
+                curr = dp[j + 1];
+                dp[j + 1] = if a[i] == b[j] {
+                    prev + 1
+                } else {
+                    i32::max(dp[j], dp[j + 1])
+                };
             }
-            if dp[m][n] != 0 {
-                return dp[m][n];
-            }
-
-            if s1[m - 1] == s2[n - 1] {
-                dp[m][n] = 1 + lcs(s1, s2, m - 1, n - 1, dp)
-            } else {
-                dp[m][n] = std::cmp::max(
-                    lcs(s1, s2, m - 1, n, dp), // excluding last element of s1
-                    lcs(s1, s2, m, n - 1, dp), // excluding last element of s2
-                );
-            }
-            dp[m][n]
         }
-        lcs(&s1, &s2, m, n, &mut dp)
+
+        return dp[b.len()];
     }
 }
