@@ -1,7 +1,7 @@
 mod tests;
 fn main() {
     let input = vec![1, 2, 3];
-    let output = Solution::permute(input);
+    let output = Solution::permute_recursive(input);
     let expected = vec![
         vec![3, 2, 1],
         vec![2, 3, 1],
@@ -44,6 +44,32 @@ impl Solution {
             }
             res.extend(perms);
         }
+        return res;
+    }
+
+    pub fn permute_recursive(nums: Vec<i32>) -> Vec<Vec<i32>> {
+        let mut res: Vec<Vec<i32>> = vec![];
+        let mut path: Vec<i32> = vec![];
+        let mut used: Vec<bool> = vec![false; nums.len()]; // maintain to keep track of used elements
+
+        fn backtrack(nums: &Vec<i32>, res: &mut Vec<Vec<i32>>, path: &mut Vec<i32>, used: &mut Vec<bool>) {
+            if path.len() == nums.len() {
+                res.push(path.to_vec());
+                return;
+            }
+
+            for i in 0..nums.len() {
+                if !used[i]{ // if not used
+                    used[i] = true; // mark as used
+                    path.push(nums[i]); // add to path
+                    backtrack(nums, res, path, used); // backtrack
+                    path.pop(); // remove from path
+                    used[i] = false; // again mark as unused
+                }
+            }
+        }
+        
+        backtrack(&nums, &mut res, &mut path, &mut used);
         return res;
     }
 }
