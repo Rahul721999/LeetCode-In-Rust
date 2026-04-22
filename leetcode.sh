@@ -27,7 +27,7 @@ GREEN="\033[0;32m"
 YELLOW="\033[1;33m"
 NC="\033[0m" # No Color (resets color to default)
 
-echo -e "${GREEN}LeetCode project '${YELLOW}leetcode_${problem_no}${GREEN}' initialized in folder '${YELLOW}$folder_name${GREEN}'."
+printf "${GREEN}LeetCode project '${YELLOW}leetcode_${problem_no}${GREEN}' initialized in folder '${YELLOW}$folder_name${GREEN}'.${NC}\n"
 
 
 #Initialize a tests.rs file inside the project's /src dir
@@ -63,19 +63,19 @@ EOL
 CURRENT_DIR=$(pwd)
 
 # Notify the user with the current directory, using colors
-echo -e "${GREEN}Created ${YELLOW}$FILE_NAME${GREEN} in the ${YELLOW}$CURRENT_DIR${GREEN} directory.${NC}"
+printf "${GREEN}Created ${YELLOW}$FILE_NAME${GREEN} in the ${YELLOW}$CURRENT_DIR${GREEN} directory.${NC}\n"
 
 
 # Add "mod tests;" in main.rs line 1
 MAIN_RS_FILE="main.rs"
 
-# insert "mod tests;" at the first line
-sed -i '1imod tests;' "$MAIN_RS_FILE"
+# insert "mod tests;" at the first line (portable way)
+{ echo "mod tests;"; cat "$MAIN_RS_FILE"; } > "$MAIN_RS_FILE.tmp" && mv "$MAIN_RS_FILE.tmp" "$MAIN_RS_FILE"
 
-# insert "pub struct Solution;" at 5th line
-sed -i '$apub struct Solution;' "$MAIN_RS_FILE"
+# append "pub struct Solution;" to the end
+echo "pub struct Solution;" >> "$MAIN_RS_FILE"
 
 # Notify the user that the line has been added
-echo -e "${GREEN}Added ${YELLOW}mod tests;${GREEN} to ${YELLOW}$MAIN_RS_FILE${GREEN} at line 1.${NC}"
+printf "${GREEN}Added ${YELLOW}mod tests;${GREEN} and ${YELLOW}pub struct Solution;${GREEN} to ${YELLOW}$MAIN_RS_FILE${GREEN}.${NC}\n"
 
 cat "$MAIN_RS_FILE"
