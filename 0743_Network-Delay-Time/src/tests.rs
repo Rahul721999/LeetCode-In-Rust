@@ -10,14 +10,32 @@ fn test1() {
 
 #[test]
 fn test2() {
-    let times = vec![vec![1,2,1], vec![2, 3, 1], vec![1,4,4], vec![3,4,1]];
+    let times = vec![vec![1, 2, 1], vec![2, 3, 1], vec![1, 4, 4], vec![3, 4, 1]];
     let output = Solution::network_delay_time(times, 4, 1);
     assert_eq!(3, output);
 }
 
 #[test]
 fn test3() {
-    let times = vec![vec![1,2,1], vec![2,3,1]];
+    let times = vec![vec![1, 2, 1], vec![2, 3, 1]];
     let output = Solution::network_delay_time(times, 3, 2);
+    assert_eq!(-1, output);
+}
+#[test]
+fn test4() {
+    let times = vec![vec![1, 2, 1], vec![2, 1, 3]];
+    let output = Solution::network_delay_time(times, 2, 2);
+    assert_eq!(3, output);
+}
+#[test]
+fn test5() {
+    let times = vec![vec![1, 2, 1], vec![2, 1, 3]];
+    let output = Solution::network_delay_time(times, 2, 2);
+    assert_eq!(3, output);
+}
+#[test]
+fn test6() {
+    let times = vec![vec![1, 2, 1]];
+    let output = Solution::network_delay_time(times, 2, 2);
     assert_eq!(-1, output);
 }

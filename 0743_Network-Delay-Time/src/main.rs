@@ -36,8 +36,6 @@ impl Solution {
         queue.push(Reverse((0, k)));
 
         while let Some(Reverse((curr_dist, source))) = queue.pop() {
-            // TODO: this should be reversed
-            println!("{}", source);
             if let Some(edge) = map.get(&source) {
                 for (dest, weight) in edge {
                     let dest = *dest as usize;
