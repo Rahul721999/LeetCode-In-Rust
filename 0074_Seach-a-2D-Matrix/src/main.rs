@@ -16,35 +16,44 @@ impl Solution {
 
         let mut left = 0 as i32;
         let mut right = height as i32 - 1;
-        let mut pivot = 0;
+        let mut row = -1;
+
         while left <= right {
-            pivot = left + (right - left) / 2;
-            let mid_ele = matrix[pivot as usize][0];
-            if mid_ele == target { return true}
-            if target > mid_ele{
+            let pivot = left + (right - left) / 2;
+            let first = matrix[pivot as usize][0];
+            let last = matrix[pivot as usize][width - 1];
+            if first == target {
+                return true;
+            }
+            if target > last {
                 left = pivot + 1;
-            }
-            if mid_ele > target {
+            } else if target < first {
                 right = pivot - 1;
-            }
+            } else {
+                row = pivot;
+                break;
+            };
         }
-        let row = pivot as usize;
+
+        if row == -1 {
+            return false;
+        }
 
         let mut left = 1 as i32; // because we've already searched 0th col
         let mut right = width as i32 - 1;
 
-        while left <= right{
+        while left <= right {
             let pivot = left + (right - left) / 2;
-            let mid_val = matrix[row][pivot as usize];
-            if mid_val == target{
+            let mid_val = matrix[row as usize][pivot as usize];
+            if mid_val == target {
                 return true;
             }
-            if target > mid_val{
+            if target > mid_val {
                 left = pivot + 1;
-            }else{
+            } else {
                 right = pivot - 1;
             }
-        };
+        }
 
         false
     }

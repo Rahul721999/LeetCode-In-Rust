@@ -10,8 +10,8 @@ fn test1() {
 
 #[test]
 fn test2() {
-    let matrix = vec![vec![1, 3, 5, 7], vec![10, 11, 16, 20], vec![23, 30, 34, 60]];
-    let output = Solution::search_matrix(matrix, 60);
+    let matrix = vec![vec![1,3,5,7],vec![10,11,16,20],vec![23,30,34,50]];
+    let output = Solution::search_matrix(matrix, 11);
     assert!(output);
 }
 
